@@ -12,7 +12,7 @@ const userSchema = new Schema({
         validate: {
             message: "El email ya tiene una cuenta asociada",
             validator: async (email) => {
-                const items = await mongoose.model("User").count({email});
+                const items = await model("User").count({email});
                 return items < 1;
             }
         }

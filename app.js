@@ -5,6 +5,10 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require("mongoose");
+const cors = require('cors'); //Sirve para transferir entre el back y el fornt
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+
 
 mongoose
   .connect(process.env.DB, {
@@ -28,10 +32,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(
+  cors({
+      origin: ["http://localhost:3002", "https://productback.herokuapp.com/"],
+      credentials: true
+  })
+);
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/user', usersRouter);
 app.use('/api/category', require('./routes/category'));
-app.use('/api/torneovideogame', require('./routes/videogame'));
+app.use('/api/torneovideogame', require('./routes/torneovideogame'));
 
 module.exports = app;

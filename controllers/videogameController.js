@@ -1,8 +1,7 @@
 const formidable = require('formidable');
 const _ = require('lodash');
 const fs = require('fs');
-
-const Videogame = require('../models/Videogame');
+const Videogame = require('../models/Torneo');
 const { errorHandler } = require('../helpers/dberrorHandler');
 
 
@@ -48,7 +47,7 @@ exports.create = (req, res) => {
     // 1KB = 1000 bytes
     // 1MB = 1,000,000 bytes 
     // 1 Byte = 8 bits
-
+    console.log(videogame)
     if (files.photo) {
       if (files.photo.size > 1000000) {
         return res.status(400).json({
@@ -87,7 +86,7 @@ exports.remove = (req, res) => {
 }
 
 //Reducir el tiempo de search de la API
-exports.videogameById = (req, res, next, id) => {
+exports.torneovideogameById = (req, res, next, id) => {
   Videogame.findById(id)
     .populate("category")
     .exec((err, videogame) => {
