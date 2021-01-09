@@ -31,5 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/api/category', require('./routes/category'));
+app.use('/api/torneovideogame', require('./routes/videogame'));
 
 module.exports = app;
