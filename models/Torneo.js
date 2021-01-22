@@ -16,10 +16,10 @@ const torneovideogameSchema = new mongoose.Schema(
       maxlength: 2000
     },
     price: {
-      type: Number,
+      type: String,
       trim: true,
       require: true,
-      maxlength: 32,
+      maxlength: 100,
     },
     category: {
       type: ObjectId,
@@ -38,3 +38,4 @@ const torneovideogameSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model("Torneo", torneovideogameSchema);
+
